@@ -1,0 +1,198 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.10
+-- Dumped by pg_dump version 9.6.10
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: games; Type: TABLE; Schema: public; Owner: camilafarelo
+--
+
+CREATE TABLE public.games (
+    id integer NOT NULL,
+    first_player jsonb,
+    second_player jsonb,
+    rounds jsonb
+);
+
+
+ALTER TABLE public.games OWNER TO camilafarelo;
+
+--
+-- Name: games_id_seq; Type: SEQUENCE; Schema: public; Owner: camilafarelo
+--
+
+CREATE SEQUENCE public.games_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.games_id_seq OWNER TO camilafarelo;
+
+--
+-- Name: games_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: camilafarelo
+--
+
+ALTER SEQUENCE public.games_id_seq OWNED BY public.games.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: camilafarelo
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    name text NOT NULL
+);
+
+
+ALTER TABLE public.users OWNER TO camilafarelo;
+
+--
+-- Name: untitled_table_id_seq; Type: SEQUENCE; Schema: public; Owner: camilafarelo
+--
+
+CREATE SEQUENCE public.untitled_table_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.untitled_table_id_seq OWNER TO camilafarelo;
+
+--
+-- Name: untitled_table_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: camilafarelo
+--
+
+ALTER SEQUENCE public.untitled_table_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: games id; Type: DEFAULT; Schema: public; Owner: camilafarelo
+--
+
+ALTER TABLE ONLY public.games ALTER COLUMN id SET DEFAULT nextval('public.games_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: camilafarelo
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.untitled_table_id_seq'::regclass);
+
+
+--
+-- Data for Name: games; Type: TABLE DATA; Schema: public; Owner: camilafarelo
+--
+
+COPY public.games (id, first_player, second_player, rounds) FROM stdin;
+246	{"player": [{"player_id": 582, "player_name": "player2"}]}	{"player": [{"player_id": 583, "player_name": "player3"}]}	\N
+248	{"player": [{"player_id": 586, "player_name": "Player1"}]}	{"player": [{"player_id": 587, "player_name": "Player2"}]}	\N
+252	{"player": [{"player_id": 590, "player_name": "Player1"}]}	{"player": [{"player_id": 591, "player_name": "Player2"}]}	\N
+254	{"player": [{"player_id": 592, "player_name": "Player1"}]}	{"player": [{"player_id": 593, "player_name": "Player2"}]}	\N
+255	{"player": [{"player_id": 594, "player_name": "Player1"}]}	{"player": [{"player_id": 595, "player_name": "Player2"}]}	\N
+256	{"player": [{"player_id": 594, "player_name": "Player1"}]}	{"player": [{"player_id": 595, "player_name": "Player2"}]}	\N
+258	{"player": [{"player_id": 598, "player_name": "ewrwer"}]}	{"player": [{"player_id": 599, "player_name": "werwe"}]}	\N
+247	{"player": [{"player_id": 584, "player_name": "Player1"}]}	{"player": [{"player_id": 585, "player_name": "Player2"}]}	\N
+249	{"player": [{"player_id": 586, "player_name": "Player1"}]}	{"player": [{"player_id": 587, "player_name": "Player2"}]}	\N
+250	{"player": [{"player_id": 588, "player_name": "Player1"}]}	{"player": [{"player_id": 589, "player_name": "Player2"}]}	\N
+251	{"player": [{"player_id": 588, "player_name": "Player1"}]}	{"player": [{"player_id": 589, "player_name": "Player2"}]}	\N
+253	{"player": [{"player_id": 592, "player_name": "Player1"}]}	{"player": [{"player_id": 593, "player_name": "Player2"}]}	\N
+257	{"player": [{"player_id": 596, "player_name": "player12"}]}	{"player": [{"player_id": 597, "player_name": "player123"}]}	\N
+\.
+
+
+--
+-- Name: games_id_seq; Type: SEQUENCE SET; Schema: public; Owner: camilafarelo
+--
+
+SELECT pg_catalog.setval('public.games_id_seq', 259, true);
+
+
+--
+-- Name: untitled_table_id_seq; Type: SEQUENCE SET; Schema: public; Owner: camilafarelo
+--
+
+SELECT pg_catalog.setval('public.untitled_table_id_seq', 601, true);
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: camilafarelo
+--
+
+COPY public.users (id, name) FROM stdin;
+582	player2
+583	player3
+584	Player1
+585	Player2
+586	Player1
+587	Player2
+588	Player1
+589	Player2
+590	Player1
+591	Player2
+592	Player1
+593	Player2
+594	Player1
+595	Player2
+596	player12
+597	player123
+598	ewrwer
+599	werwe
+\.
+
+
+--
+-- Name: games games_pkey; Type: CONSTRAINT; Schema: public; Owner: camilafarelo
+--
+
+ALTER TABLE ONLY public.games
+    ADD CONSTRAINT games_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users untitled_table_pkey; Type: CONSTRAINT; Schema: public; Owner: camilafarelo
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT untitled_table_pkey PRIMARY KEY (id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
