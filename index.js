@@ -1,9 +1,10 @@
-import UserCtrl from './routes/api/controllers/UserCtrl';
-import GameCtrl from './routes/api/controllers/GameCtrl';
+import UserCtrl from './api/controllers/UserCtrl';
+import GameCtrl from './api/controllers/GameCtrl';
 
+require('@babel/register');
+require("@babel/polyfill");
 
 const express = require('express');
-// const apiRoute = require('./routes/api');
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -21,15 +22,15 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+// user
 app.post('/user', UserCtrl.post);
 app.get('/user', UserCtrl.get);
 app.get('/user/:id', UserCtrl.get);
+app.delete('/user/:id', UserCtrl.delete)
+app.delete('/user', UserCtrl.delete)
 
+// game
 app.get('/game', GameCtrl.get);
 app.put('/game', GameCtrl.put);
-
-
-
-
 
 app.listen('3000')

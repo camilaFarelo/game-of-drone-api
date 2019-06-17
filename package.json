@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon index.js --exec babel-node --presets babel-preset-env"
+    "test": "npm run test:unit",
+    "test:unit": "mocha './test/test.js' --require @babel/register",
+    "server": "nodemon index.js --exec babel-node index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/polyfill": "^7.4.4",
+    "@babel/runtime": "^7.4.5",
     "@hapi/joi": "^15.0.3",
     "bluebird": "^3.5.5",
     "body-parser": "^1.19.0",
@@ -21,10 +24,16 @@
     "sqlite3": "^4.0.9"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/register": "^7.4.4",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.6",
-    "babel-preset-env": "^1.7.0",
+    "chai": "^4.2.0",
+    "eslint": "^5.16.0",
     "mocha": "^6.1.4",
     "nodemon": "^1.19.1"
   }
